@@ -53,4 +53,3 @@ class TestUpdateList(TestCase):
     # test valid data
     def test_valid_data(self):
         self.assertEqual(self.response.status_code,201)
-
