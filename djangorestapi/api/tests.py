@@ -55,7 +55,7 @@ class TestUpdateList(TestCase):
         self.assertEqual(self.response.status_code,201)
 
     def test_fetch_all_todo_items(self):
-        """Test for fetching todo items from the database"""
+        """Test for fetching all todo items from the database"""
         todo = ToDoList.objects.get()
         response = self.client.get(
             reverse('details',
