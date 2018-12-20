@@ -53,3 +53,16 @@ class TestUpdateList(TestCase):
     # test valid data
     def test_valid_data(self):
         self.assertEqual(self.response.status_code,201)
+<<<<<<< HEAD
+=======
+
+    def test_fetch_a_single_todo_item(self):
+        """Test for fetching a todo item from the database"""
+        todo = ToDoList.objects.get()
+        response = self.client.get(
+            reverse('details',
+            kwargs={'pk': todo.id}), format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, todo)
+>>>>>>> fffd54f52fbcddbf8262654c9a50b5a9afb24652
