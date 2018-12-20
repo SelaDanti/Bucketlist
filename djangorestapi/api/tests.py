@@ -25,24 +25,31 @@ class ModleTestList(TestCase):
 
 
 class TestUpdateList(TestCase):
+    """Test for updating list items"""
+    
+    # define variable needed to run test
     def setUp(self):
         self.client = APIClient()
         self.update_data = {'item_name': 'change item'}
         self.res = self.client.post(reverse(create),self.update_data,format='json')
 
+    # destroys variable after test has run
     def tearDown(self):
         self.client = None
         self.update_data = None
         self.res = None
 
+    # test when input is empty
     def test_empty_input(self):
         self.update_data['item_name'] = ''
         self.assertEqual(self.res.status_code,406)
 
+    # test when input contains only whitespace
     def test_empty_whitespace(self):
         self.update_data['item_name'] = '  '
         self.assertEqual(self.res.status_code,406)
 
+    # test valid data
     def test_valid_data(self):
         self.assertEqual(self.res.status_code,201)
 
