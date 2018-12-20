@@ -17,3 +17,5 @@ class ModleTestList(TestCase):
         self.todo_list.save()
         new_count = ToDoList.objects.count()
         self.assertNotEqual(initial_count, new_count)
+        result =self.todo_list.save()
+        self.assertEqual(result.status_code,status.HTTP_201_CREATED)
