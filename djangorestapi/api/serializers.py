@@ -10,3 +10,4 @@ class ToDoListSerializer(serializers.ModelSerializer):
         model=ToDoList
         fields=('id','item_name','date_created','date_modified','compelete')
         read_only_field=('date_created', 'date_modified')
+        
