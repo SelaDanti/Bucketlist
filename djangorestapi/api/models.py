@@ -1,6 +1,6 @@
 #api/models
-
-from django.db  import models
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class ToDoList(models.Model):
     """This is a representation of buckectlist model."""
@@ -12,3 +12,10 @@ class ToDoList(models.Model):
     def __str__(self):
         """Readable Output for users."""
         return "{}".format(self.item_name)
+
+class CustomUser(AbstractUser):
+    name = models.CharField(blank=True,max_length=255)
+
+
+    def __str__(self):
+        return self.email
