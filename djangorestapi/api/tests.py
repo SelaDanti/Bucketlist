@@ -25,32 +25,36 @@ class ModelTestList(TestCase):
         self.assertEqual(result.status_code,status.HTTP_201_CREATED)
 
 
-class TestUpdateList(TestCase):
+class TestToDoList(TestCase):
     """Test for updating list items"""
-    
-    # define variable needed to run test
-    def setUp(self):
-        self.client = APIClient()
-        self.update_data = {'item_name': 'change item'}
-        self.response = self.client.post(reverse('create'),self.update_data,format='json')
 
-    # destroys variable after test has run
+    def setUp(self):
+        """define variable needed to run test."""
+        self.client = APIClient()
+        self.sample_data = {'item_name': 'change item'}
+        self.response = self.client.post(reverse('create'),self.sample_data,format='json')
+
     def tearDown(self):
+        """destroys variable after test has run."""
         self.client = None
         self.update_data = None
         self.response = None
+    
+    def test_api_can_add_new_item(self):
+        """Test add functionality"""
+        self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
 
-    # test when input is empty
     def test_empty_input(self):
+        """test when input is empty."""
         self.update_data['item_name'] = ''
         self.assertEqual(self.response.status_code,406)
 
-    # test when input contains only whitespace
+    """test when input contains only whitespace."""
     def test_empty_whitespace(self):
         self.update_data['item_name'] = '  '
         self.assertEqual(self.response.status_code,406)
 
-    # test valid data
+    """test valid data."""
     def test_valid_data(self):
         self.assertEqual(self.response.status_code,201)
 
