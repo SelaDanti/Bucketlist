@@ -54,8 +54,8 @@ class TestUpdateList(TestCase):
     def test_valid_data(self):
         self.assertEqual(self.response.status_code,201)
 
-    def test_fetch_all_todo_items(self):
-        """Test for fetching all todo items from the database"""
+    def test_fetch_a_single_todo_item(self):
+        """Test for fetching a todo item from the database"""
         todo = ToDoList.objects.get()
         response = self.client.get(
             reverse('details',
