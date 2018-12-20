@@ -7,7 +7,7 @@ from rest_framework import status
 from django.urls import reverse
 
 
-class ModleTestList(TestCase):
+class ModelTestList(TestCase):
     """Test the bucket list Model."""
 
     def setUp(self):
@@ -52,4 +52,3 @@ class TestUpdateList(TestCase):
     # test valid data
     def test_valid_data(self):
         self.assertEqual(self.res.status_code,201)
-
