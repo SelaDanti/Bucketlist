@@ -22,7 +22,6 @@ class ModelTestList(TestCase):
         new_count = ToDoList.objects.count()
         self.assertNotEqual(initial_count, new_count)
         result =self.todo_list.save()
-        #self.assertEqual(result.status_code,status.HTTP_201_CREATED)
 
 
 class TestToDoList(TestCase):
@@ -44,26 +43,26 @@ class TestToDoList(TestCase):
         """Test add functionality"""
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
 
-    # def test_empty_input(self):
-    #     """test when input is empty."""
-    #     self.update_data['item_name'] = ''
-    #     self.assertEqual(self.response.status_code,406)
+    def test_empty_input(self):
+        """test when input is empty."""
+        self.update_data['item_name'] = ''
+        self.assertEqual(self.response.status_code,406)
 
-    # """test when input contains only whitespace."""
-    # def test_empty_whitespace(self):
-    #     self.update_data['item_name'] = '  '
-    #     self.assertEqual(self.response.status_code,406)
+    """test when input contains only whitespace."""
+    def test_empty_whitespace(self):
+        self.update_data['item_name'] = '  '
+        self.assertEqual(self.response.status_code,406)
 
-    # """test valid data."""
-    # def test_valid_data(self):
-    #     self.assertEqual(self.response.status_code,201)
+    """test valid data."""
+    def test_valid_data(self):
+        self.assertEqual(self.response.status_code,201)
 
-    # # def test_fetch_a_single_todo_item(self):
-    # #     """Test for fetching a todo item from the database"""
-    # #     todo = ToDoList.objects.get()
-    # #     response = self.client.get(
-    # #         reverse('details',
-    # #         kwargs={'pk': todo.id}), format="json")
+    def test_fetch_a_single_todo_item(self):
+        """Test for fetching a todo item from the database"""
+        todo = ToDoList.objects.get()
+        response = self.client.get(
+            reverse('details',
+            kwargs={'pk': todo.id}), format="json")
 
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #     self.assertContains(response, todo)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, todo)
