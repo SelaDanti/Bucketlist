@@ -1,6 +1,6 @@
 #api/serializers.py
-
 from rest_framework import serializers
+from . import models
 from .models import ToDoList
 
 class ToDoListSerializer(serializers.ModelSerializer):
@@ -11,3 +11,7 @@ class ToDoListSerializer(serializers.ModelSerializer):
         fields=('id','item_name','date_created','date_modified','compelete')
         read_only_field=('date_created', 'date_modified')
         
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CustomUser
+        fields=('email','username',)
