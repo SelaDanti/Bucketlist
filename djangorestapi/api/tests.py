@@ -2,8 +2,12 @@
 
 from django.test import TestCase
 from .models import ToDoList
+from responset_framework.test import APIClient
+from responset_framework import status
+from django.urls import reverse
 
-class ModleTestList(TestCase):
+
+class ModelTestList(TestCase):
     """Test the bucket list Model."""
 
     def setUp(self):
@@ -19,3 +23,34 @@ class ModleTestList(TestCase):
         self.assertNotEqual(initial_count, new_count)
         result =self.todo_list.save()
         self.assertEqual(result.status_code,status.HTTP_201_CREATED)
+
+
+class TestUpdateList(TestCase):
+    """Test for updating list items"""
+    
+    # define variable needed to run test
+    def setUp(self):
+        self.client = APIClient()
+        self.update_data = {'item_name': 'change item'}
+        self.response = self.client.post(reverse('create'),self.update_data,format='json')
+
+    # destroys variable after test has run
+    def tearDown(self):
+        self.client = None
+        self.update_data = None
+        self.response = None
+
+    # test when input is empty
+    def test_empty_input(self):
+        self.update_data['item_name'] = ''
+        self.assertEqual(self.response.status_code,406)
+
+    # test when input contains only whitespace
+    def test_empty_whitespace(self):
+        self.update_data['item_name'] = '  '
+        self.assertEqual(self.response.status_code,406)
+
+    # test valid data
+    def test_valid_data(self):
+        self.assertEqual(self.response.status_code,201)
+
