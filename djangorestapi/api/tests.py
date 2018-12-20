@@ -4,7 +4,7 @@ from django.test import TestCase
 from .models import ToDoList
 from rest_framework.test import APIClient
 from rest_framework import status
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class ModleTestList(TestCase):
@@ -31,7 +31,7 @@ class TestUpdateList(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.update_data = {'item_name': 'change item'}
-        self.res = self.client.post(reverse(create),self.update_data,format='json')
+        self.res = self.client.post(reverse('create'),self.update_data,format='json')
 
     # destroys variable after test has run
     def tearDown(self):
