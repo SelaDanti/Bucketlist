@@ -23,7 +23,6 @@ class ModelTestList(TestCase):
         self.assertNotEqual(initial_count, new_count)
 
 
-
 class TestUpdateList(TestCase):
     """Test for updating list items"""
     
