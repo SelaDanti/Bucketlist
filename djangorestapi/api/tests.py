@@ -2,8 +2,8 @@
 
 from django.test import TestCase
 from .models import ToDoList
-from rest_framework.test import APIClient
-from rest_framework import status
+from responset_framework.test import APIClient
+from responset_framework import status
 from django.urls import reverse
 
 
@@ -30,24 +30,24 @@ class TestUpdateList(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.update_data = {'item_name': 'change item'}
-        self.res = self.client.post(reverse('create'),self.update_data,format='json')
+        self.response = self.client.post(reverse('create'),self.update_data,format='json')
 
     # destroys variable after test has run
     def tearDown(self):
         self.client = None
         self.update_data = None
-        self.res = None
+        self.response = None
 
     # test when input is empty
     def test_empty_input(self):
         self.update_data['item_name'] = ''
-        self.assertEqual(self.res.status_code,406)
+        self.assertEqual(self.response.status_code,406)
 
     # test when input contains only whitespace
     def test_empty_whitespace(self):
         self.update_data['item_name'] = '  '
-        self.assertEqual(self.res.status_code,406)
+        self.assertEqual(self.response.status_code,406)
 
     # test valid data
     def test_valid_data(self):
-        self.assertEqual(self.res.status_code,201)
+        self.assertEqual(self.response.status_code,201)
