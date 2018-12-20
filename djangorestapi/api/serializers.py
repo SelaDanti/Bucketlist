@@ -8,7 +8,7 @@ class ToDoListSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class will map serializer field with the models fileds."""
         model=ToDoList
-        fields=('id','item_name','date_created','date_modified','compelete')
+        fields=('id','item_name','date_created','date_updated','complete')
         read_only_field=('date_created', 'date_modified')
         
 class UserSerializer(serializers.ModelSerializer):
