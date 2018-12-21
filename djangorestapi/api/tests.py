@@ -2,8 +2,8 @@
 
 from django.test import TestCase
 from .models import ToDoList
-from responset_framework.test import APIClient
-from responset_framework import status
+from rest_framework.test import APIClient
+from rest_framework import status
 from django.urls import reverse
 
 
@@ -22,7 +22,6 @@ class ModelTestList(TestCase):
         new_count = ToDoList.objects.count()
         self.assertNotEqual(initial_count, new_count)
         result =self.todo_list.save()
-        self.assertEqual(result.status_code,status.HTTP_201_CREATED)
 
 
 class TestToDoList(TestCase):
