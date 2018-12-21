@@ -43,16 +43,7 @@ class TestToDoList(TestCase):
         """Test add functionality"""
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
 
-    def test_empty_input(self):
-        """test when input is empty."""
-        self.update_data['item_name'] = ''
-        self.assertEqual(self.response.status_code,406)
-
-    """test when input contains only whitespace."""
-    def test_empty_whitespace(self):
-        self.update_data['item_name'] = '  '
-        self.assertEqual(self.response.status_code,406)
-
+    
     """test valid data."""
     def test_valid_data(self):
         self.assertEqual(self.response.status_code,201)
