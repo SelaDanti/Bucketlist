@@ -18,3 +18,10 @@ class CreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         """Save new item."""
         serializer.save()  
+
+class DetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = models.ToDoList.objects.all()
+    serializer_class = serializers.ToDoListSerializer
+    
